@@ -1,11 +1,12 @@
-import {CreateVideoRequest, InputStream} from '../../../../types/index.js';
+import { multipartHeader } from '../../../../request.js';
+import {CreateVideoRequest, InputStream, CreateImageFromUrlRequest} from '../../../../types/index.js';
 import {operations} from '../../../../types/restful/specs/commerce_media_v1_beta_oas3.js';
 import Restful, {OpenApi} from '../../index.js';
 
 /**
  * The Media API allows sellers to create, upload, and fetch videos.
  */
-export default class Media extends Restful implements OpenApi<operations> {
+export default class Media extends Restful implements OpenApi<Omit<operations, 'createDocument' | 'createDocumentFromUrl' | 'getDocument' | 'uploadDocument'>> {
 
 
   static id = 'Media';
@@ -44,5 +45,25 @@ export default class Media extends Restful implements OpenApi<operations> {
   async uploadVideo(videoId: string, body?: InputStream) {
     videoId = encodeURIComponent(videoId);
     return this.post(`/video/${videoId}/upload`, body);
+  }
+
+  async createImageFromFile(data: any) {
+    return this.post(`/image/create_image_from_file`, data, {
+      headers: {
+        ...multipartHeader,
+      },
+    }, {
+      returnResponse: true,
+    });
+  }
+
+  async createImageFromUrl(body?: CreateImageFromUrlRequest) {
+    return this.post(`/image/create_image_from_url`, body, {}, {
+      returnResponse: true,
+    });
+  }
+
+  async getImage(imageId: string) {
+    return this.get(`/image/${imageId}`);
   }
 }

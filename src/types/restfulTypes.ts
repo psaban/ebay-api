@@ -441,6 +441,7 @@ export type CommerceCatalogSearchParams = commerceCatalogOperations['search']['p
 
 export type CreateVideoRequest = commerceMedia['schemas']['CreateVideoRequest'];
 export type InputStream = commerceMedia['schemas']['InputStream'];
+export type CreateImageFromUrlRequest = commerceMedia['schemas']['CreateImageFromUrlRequest'];
 
 export type UpdateConversationRequest = commerceMessage['schemas']['UpdateConversationRequest'];
 export type BulkUpdateConversationRequest = commerceMessage['schemas']['BulkUpdateConversationsRequest'];
