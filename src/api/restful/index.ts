@@ -191,7 +191,6 @@ export default abstract class Restful extends Api {
       ...signatureHeaders
     };
 
-    console.log({headers: apiRequest.config.headers});
     return {
       ...apiRequest.config,
       headers: {
@@ -236,7 +235,6 @@ export default abstract class Restful extends Api {
     const {path, method, data} = apiRequest;
 
     const apiCfg: Required<RestfulApiConfig> = {...this.apiConfig, ...apiConfig};
-    console.log(apiCfg);
     const endpoint = this.getServerUrl(apiCfg) + path;
 
     try {
@@ -245,7 +243,6 @@ export default abstract class Restful extends Api {
       }
 
       const enrichedConfig = await this.enrichRequestConfig(apiRequest, data, apiCfg);
-      console.log(enrichedConfig);
 
       const args = ['get', 'delete'].includes(method) ? [enrichedConfig] : [data, enrichedConfig];
       // @ts-ignore
