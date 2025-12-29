@@ -195,8 +195,8 @@ export default abstract class Restful extends Api {
     return {
       ...apiRequest.config,
       headers: {
+        ...headers,
         ...(apiRequest.config.headers || {}),
-        ...headers
       }
     };
   }
