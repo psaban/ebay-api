@@ -191,6 +191,7 @@ export default abstract class Restful extends Api {
       ...signatureHeaders
     };
 
+    console.log({headers: apiRequest.config.headers});
     return {
       ...apiRequest.config,
       headers: {
