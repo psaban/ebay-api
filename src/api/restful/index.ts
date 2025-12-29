@@ -251,7 +251,7 @@ export default abstract class Restful extends Api {
       // @ts-ignore
       const response = await this.req[method](endpoint, ...args);
 
-      if (this.apiConfig.returnResponse) {
+      if (apiCfg.returnResponse) {
         return response;
       } else {
         return response.data;
